@@ -1,0 +1,1130 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CampusBazar</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple-1:#5f4bb6;
+  --purple-2:#7f5fc2;
+  --green-1:#10b981;
+  --accent:#ff9cc0;
+  --white:#ffffff;
+  --muted:#666;
+  --card-bg: rgba(255,255,255,0.98);
+  --hero-img: radial-gradient(1200px 600px at 80% 30%, rgba(159,121,255,0.20) 0%, rgba(120,90,220,0.10) 20%, rgba(255,255,255,0) 40%);
+  --glow: 0 14px 50px rgba(127,95,194,0.14), 0 6px 20px rgba(127,95,194,0.08);
+  --pulse: 0 0 20px rgba(127,95,194,0.14);
+  --btn-press-shadow: 0 18px 60px rgba(127,95,194,0.18);
+}
+
+*{
+  box-sizing:border-box
+}
+html,body{
+  height:100%;
+  margin:0;
+  font-family:Poppins,
+  system-ui,Arial;
+  color:#111;
+  background:linear-gradient(180deg,#fbf7ff,#fff)} a{color:var(--purple-2);
+  text-decoration:none}
+.hidden{display:none}
+
+/* NAV */
+.site-nav{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  top:18px;
+  z-index:140;
+  display:flex;align-items:center;gap:18px;padding:10px 18px;
+  border-radius:999px;
+  background:linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04));
+  backdrop-filter: blur(8px) saturate(1.05);
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow:var(--glow);
+  transition:transform .18s, box-shadow .18s;
+}
+.site-nav:hover{ 
+  transform:translateX(-50%) translateY(-2px);
+   box-shadow:0 22px 70px rgba(127,95,194,0.16);
+   }
+.brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  color:var(--white);
+  font-weight:800
+}
+.brand .logo{
+  width:46px;
+  height:46px;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--purple-1),var(--purple-2));
+  display:grid;
+  place-items:center;
+  color:white;
+  font-weight:900;
+  box-shadow:0 6px 22px rgba(127,95,194,0.18)
+}
+.site-nav .menu{
+  display:flex;
+  gap:12px;
+  align-items:center
+}
+.site-nav .menu a{
+  color:rgba(255,255,255,0.95);
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:600;
+  transition:all .18s;
+  cursor:pointer
+}
+.site-nav .menu a:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 30px rgba(155,106,161,0.12)}
+.btn-small{
+  padding:8px 12px;
+  border-radius:10px;
+  border:0;
+  background:linear-gradient(90deg,var(--purple-2),var(--accent));
+  color:#081021;
+  font-weight:700;
+  cursor:pointer
+}
+.btn-small.ghost{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.08);
+  color:white
+}
+
+.hero{
+  min-height:64vh;
+  height:72vh;
+  position:relative;
+  display:flex;align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:linear-gradient(180deg,#f8f6ff, #fff);
+}
+.hero .wrap{
+  position:relative;
+  z-index:2;
+  max-width:1100px;
+  width:100%;
+  display:flex;
+  gap:20px;
+  align-items:center;
+  padding:34px
+}
+.hero .left{
+  flex:1;
+  min-width:300px
+}
+.hero .title{
+  font-size:36px;
+  font-weight:900;
+  margin:0;
+  color:#081021
+}
+.hero .subtitle{
+  margin-top:8px;
+  color:var(--muted);
+  font-weight:500
+}
+.hero .actions{
+  margin-top:14px;
+  display:flex;gap:12px
+}
+.hero .right{
+  width:420px;
+  flex-shrink:0;
+  text-align:right
+}
+.hero .hero-img{
+  width:420px;
+  height:360px;
+  border-radius:200px;
+  overflow:hidden;
+  display:inline-block;
+  border:12px solid white;
+  background-image: var(--hero-img); 
+  background-size:cover; 
+  background-position:center;
+  transform:translateY(8%);
+  box-shadow: 0 30px 80px rgba(10,10,30,0.2), 0 12px 40px rgba(127,95,194,0.12);
+}
+.container{
+  max-width:1100px;
+  margin:28px auto;padding:0 18px
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:18px;
+  align-items:flex-start
+}
+@media(max-width:920px){
+  .grid{
+    grid-template-columns:1fr;
+    padding:0 12px
+  }.hero{
+    height:66vh
+  }.site-nav{
+    left:12px;
+    transform:none
+  }.hero .hero-img{
+    display:none
+  }}
+
+.card{
+  background:var(--card-bg);
+  border-radius:12px;
+  padding:16px;
+  box-shadow:0 20px 50px rgba(10,10,30,0.06), 0 6px 22px rgba(127,95,194,0.06);
+  border:1px solid rgba(0,0,0,0.04);
+  transition:transform .18s, box-shadow .18s;
+}
+.card:hover{ 
+  transform:translateY(-6px); 
+  box-shadow: var(--pulse), 0 30px 70px rgba(127,95,194,0.08);
+ }
+.card h3{
+  margin:0 0 8px 0
+}
+.card.glow{ 
+  box-shadow: 0 22px 60px rgba(127,95,194,0.12);
+   border:1px solid rgba(127,95,194,0.06); 
+  }
+
+input[type=text], input[type=email], input[type=password], input[type=date], textarea 
+{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.06);
+  margin-top:8px;
+  margin-bottom:8px;
+  font-size:14px;
+   box-shadow: inset 0 2px 8px rgba(127,95,194,0.03);
+  }
+.preview-img{
+  max-width:140px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.06);
+  margin-top:8px}
+
+.chat-fab{
+  position:fixed;right:18px;bottom:18px;
+  z-index:160;width:64px;
+  height:64px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--purple-2));
+  box-shadow:0 18px 50px rgba(155,106,161,0.22);
+  cursor:pointer;
+  transition:transform .12s
+}
+.chat-fab:hover{
+  transform:scale(1.06)
+}
+.chat-badge{
+  position:absolute;
+  top:-8px;
+  right:-8px;
+  background:#ff3b30;
+  color:#fff;
+  padding:6px 9px;
+  border-radius:999px;
+  font-weight:800;
+  border:3px solid var(--card-bg);
+  font-size:13px;
+}
+.chat-panel{
+  position:fixed;
+  right:18px;
+  bottom:100px;
+  width:420px;
+  max-width:92%;
+  height:560px;
+  z-index:170;
+  background:var(--card-bg);
+  border-radius:16px;
+  box-shadow:0 30px 90px rgba(2,6,23,0.18);
+  overflow:hidden;display:flex;
+  flex-direction:column
+}
+.chat-panel.hidden{
+  display:none
+}
+.chat-panel .head{
+  padding:12px 14px;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+.chat-body{
+  flex:1;overflow:auto;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.99), rgba(250,248,255,0.99))
+}
+.chat-msg{
+  background:rgba(0,0,0,0.03);
+  padding:10px 12px;
+  border-radius:12px;
+  max-width:78%;
+  position:relative;
+  animation:popIn .18s ease
+}
+.chat-msg.me{
+  margin-left:auto;
+  background:linear-gradient(90deg,#fff7f1,#f6f3ff)
+}
+.msg-meta{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:6px
+}
+.msg-img{
+  max-width:220px;
+  border-radius:10px;
+  margin-top:8px;
+  cursor:pointer;
+  border:1px solid rgba(0,0,0,0.06)
+}
+.chat-actions{
+  position:absolute;
+  right:8px;
+  top:8px;
+  display:flex;gap:6px
+}
+.icon-btn{
+  background:transparent;
+  border:0;
+  padding:6px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:16px;
+  display:inline-flex;
+  align-items:center;gap:6px
+}
+
+.btn{
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 16px;
+  border-radius:12px;
+  border:0;background:linear-gradient(90deg,var(--purple-2),var(--accent));
+  color:#081021;
+  font-weight:800;
+  box-shadow:0 12px 40px rgba(155,106,161,0.12);
+  transition:transform .12s,box-shadow .12s;
+  user-select:none
+}
+.btn.ghost{
+  background:transparent;
+  border:1px solid rgba(0,0,0,0.06);
+  color:#222
+}
+.btn:active{
+  transform:translateY(1px) scale(.995)
+}
+.btn.ripple{
+  position:relative;
+  overflow:hidden
+}
+.btn.ripple:after{
+  content:'';
+  position:absolute;
+  width:40px;
+  height:40px;
+  background:rgba(255,255,255,0.2);
+  left:50%;top:50%;
+  transform:translate(-50%,-50%) scale(0);
+  border-radius:50%;
+  opacity:0;
+  transition:transform .6s,opacity .6s
+}
+.btn.ripple:active:after{
+  transform:translate(-50%,-50%) scale(8);
+  opacity:1;transition:0s
+}
+
+.btn-press {
+  box-shadow: var(--btn-press-shadow);
+  transform: translateY(-6px) scale(1.02);
+}
+
+.report-controls { 
+  display:flex; 
+  gap:6px; margin-top:8px; 
+}
+.report-btn { 
+  padding:8px 10px; 
+  border-radius:8px; border:0;
+   cursor:pointer; 
+   font-weight:700; 
+   background:transparent; 
+  }
+.report-btn.yes {
+   background: linear-gradient(90deg,#b3ffda,#7ee7ad);
+    color:#03633a;
+     box-shadow:0 8px 30px rgba(30,150,120,0.06);
+     }
+.report-btn.no { 
+  background: linear-gradient(90deg,#ffd6e1,#ffb3d5);
+   color:#5a1b3a; 
+   box-shadow:0 8px 30px rgba(200,80,140,0.06); 
+  }
+
+@keyframes popIn {0%{
+  transform:translateY(8px) scale(.98);opacity:0}
+  60%{transform:translateY(-6px) scale(1.02);opacity:1}
+  100%{transform:translateY(0) scale(1)}
+}
+@keyframes bounceTiny{0%
+  {transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+  100%{transform:translateY(0)}
+}
+@keyframes jiggle{0%{transform:rotate(-3deg)}
+50%{transform:rotate(3deg)}
+100%{transform:rotate(-3deg)}
+}
+
+.pulse {
+  animation: pulseGlow 3s infinite; }
+@keyframes pulseGlow {
+  0% {
+     box-shadow: 0 8px 30px rgba(127,95,194,0.06); 
+    }
+  50% {
+     box-shadow: 0 18px 60px rgba(127,95,194,0.12); transform: translateY(-2px); 
+    }
+  100% { 
+    box-shadow: 0 8px 30px rgba(127,95,194,0.06); transform: translateY(0)
+    ; }
+}
+
+
+@media(max-width:680px){
+  .grid{
+    grid-template-columns:1fr
+  }
+  .chat-panel{
+    width:92%;right:4%
+  }
+}
+
+
+.contact-hero{
+  display:flex;gap:18px;
+  align-items:flex-start;
+  padding:18px;border-radius:12px;
+  background:linear-gradient(180deg,#fff,#fbf7ff);
+  box-shadow:var(--glow);
+}
+.contact-card{padding:18px;
+  border-radius:12px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,248,255,0.98));
+  border:1px solid rgba(127,95,194,0.04)
+}
+
+.hint{
+  color:var(--muted);padding:12px}
+
+.icon-small{
+  font-size:18px;
+  line-height:1;
+  display:inline-block
+}
+.status-badge{
+  padding:6px 8px;
+  border-radius:8px;
+  font-weight:700
+}
+.status-found{
+  background:linear-gradient(90deg,#bff3d8,#7ee7ad);
+  color:#045a2b
+}
+.status-pending{
+  background:linear-gradient(90deg,#f2f0f4,#f6f3ff);
+  color:var(--muted)
+}
+
+table{
+  width:100%;
+  border-collapse:collapse
+}
+th,td{padding:8px;
+  text-align:left;
+  vertical-align:middle
+}
+thead th{
+  font-weight:700;
+  color:#333
+}
+tbody tr:nth-child(odd){
+  background:rgba(127,95,194,0.02)
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="site-nav" role="navigation" aria-label="Main menu">
+  <div class="brand"><div class="logo">CB</div><div style="color:white">CampusBazar</div></div>
+  <div class="menu" aria-hidden="false">
+    <a onclick="goTo('#home')">Home</a>
+    <a id="navLogin" onclick="showLogin();goTo('#home')">Login</a>
+    <a id="navRegister" onclick="showRegister();goTo('#home')">Register</a>
+    <a onclick="goTo('#about')">About</a>
+    <a onclick="goTo('#benefits')">Benefits</a>
+    <a onclick="goTo('#contact')">Contact</a>
+  </div>
+</div>
+
+<!-- home -->
+<section id="home" class="hero" aria-label="Hero section">
+  <div class="hero-bg" aria-hidden="true">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style="position:absolute;left:0;bottom:0;width:100%;height:54%;mix-blend-mode:normal;opacity:1">
+      <defs>
+        <linearGradient id="g1" x1="0" x2="1">
+          <stop offset="0" stop-color="#6f5aa8"/>
+          <stop offset="0.5" stop-color="#3aa17a"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#g1)" d="M0,160 C150,240 320,240 480,200 C640,160 800,40 960,56 C1120,72 1280,184 1440,208 L1440 320 L0 320 Z"></path>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <div class="left">
+      <h1 class="title">CampusBazar</h1>
+      <div class="subtitle">Lost & found for your campus — report fast, attach a photo, and let the campus know.</div>
+      <div class="actions">
+        <button class="btn ripple" onclick="scrollToLogin()" id="openPortalBtn">Open Portal</button>
+        <button class="btn ghost ripple" onclick="goTo('#about')">About</button>
+      </div>
+      <div style="margin-top:18px">
+        <div style="display:inline-block;background:white;padding:10px 18px;border-radius:999px;box-shadow:0 20px 60px rgba(2,6,23,0.18);font-weight:700">Secure • Fast • Local</div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="hero-img pulse" role="img" aria-label="hero image"></div>
+    </div>
+  </div>
+</section>
+
+<!-- grid code -->
+<div class="container">
+  <div class="grid">
+    <!-- LEFT: Login / Register / Portal -->
+    <section>
+      <!-- login page -->
+      <div id="loginCard" class="card glow" style="animation:popIn .28s ease">
+        <h3>Login</h3>
+        <label>Email</label>
+        <input id="loginEmail" type="email" placeholder="you@college.edu" autocomplete="username">
+        <label>Password</label>
+        <input id="loginPass" type="password" placeholder="password" autocomplete="current-password">
+        <div style="display:flex;gap:8px;margin-top:12px;">
+          <button id="loginBtn" class="btn ripple">Login</button>
+          <button id="gotoRegister" class="btn ghost ripple">Register</button>
+        </div>
+        <small style="color:var(--muted);display:block;margin-top:10px">Test: <strong>test@gmail.com</strong> / <strong>123@ccc</strong></small>
+      </div>
+
+      <!-- REGISTER -->
+      <div id="registerCard" class="card hidden" style="margin-top:12px">
+        <h3>Create account</h3>
+        <label>Full name</label>
+        <input id="regName" type="text" placeholder="Your full name" autocomplete="name">
+        <label>Email</label>
+        <input id="regEmail" type="email" placeholder="you@college.edu" autocomplete="email">
+        <label>Password</label>
+        <input id="regPass" type="password" placeholder="Create password" autocomplete="new-password">
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button id="regBtn" class="btn ripple">Create Account</button>
+          <button id="backToLogin" class="btn ghost ripple">⬅ Back</button>
+        </div>
+      </div>
+
+      <!-- USER PORTAL -->
+      <div id="userPortal" class="card hidden glow" style="margin-top:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3>User Portal</h3>
+          <div><button id="logoutBtn" class="btn ghost ripple">Logout</button></div>
+        </div>
+        <div style="margin-top:8px;color:var(--muted)">Signed in as: <strong id="signedName"></strong> (<span id="signedEmail"></span>)</div>
+        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
+
+        <label>Your name</label><input id="uName" type="text">
+        <label>Contact (email / phone)</label><input id="uContact" type="text">
+        <label>Lost Item Name</label><input id="uItem" type="text" placeholder="Lost item?">
+        <label>Last Location</label><input id="uLocation" type="text" placeholder="Where lost?">
+        <label>Date</label><input id="uDate" type="date">
+        <label>Attach photo</label><input id="itemImage" type="file" accept="image/*">
+        <div id="imagePreviewArea"></div>
+
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button id="submitReportBtn" class="btn ripple">Submit Report</button>
+          <button id="clearReportBtn" class="btn ghost ripple">Clear</button>
+        </div>
+
+        <h4 style="margin-top:16px">My Reports</h4>
+        <div style="display:flex;gap:8px;margin-bottom:8px">
+          <input id="reportSearch" type="text" placeholder="Search..." oninput="renderReports()">
+          <select id="reportFilter" onchange="renderReports()"><option value="all">All</option><option value="Pending">Pending</option><option value="Found">Found</option></select>
+        </div>
+        <!-- Note: added extra column 'Found?' (status) -->
+        <table aria-live="polite">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:8px">User</th>
+              <th style="text-align:left;padding:8px">Item</th>
+              <th style="text-align:left;padding:8px">Location</th>
+              <th style="text-align:left;padding:8px">Date</th>
+              <th style="text-align:left;padding:8px">Status</th>
+              <th style="text-align:left;padding:8px">Found?</th>
+            </tr>
+          </thead>
+          <tbody id="reportsList"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RIGHT: Chat + Info -->
+    <aside>
+      <div class="card glow" role="region" aria-label="Public chat card" style="animation:popIn .24s ease">
+        <h4 style="margin:0 0 12px 0">Public Chat</h4>
+        <div id="chatBody" style="max-height:360px;overflow:auto;padding:6px"></div>
+        <div style="display:flex;gap:6px;margin-top:10px">
+          <input id="chatName" type="text" placeholder="Your name (optional)" style="flex:0.9;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)">
+          <input id="chatInput" type="text" placeholder="Message" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)">
+          <button id="sendChatBtn" class="btn ripple">Send</button>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div class="card" aria-label="Info card" style="animation:popIn .24s ease">
+        <h4 style="margin:0 0 8px 0">Site Info</h4>
+        <p style="color:var(--muted)">Register or login to post reports. Reports are shown in your portal and announced in chat.</p>
+        <ul style="padding-left:18px;color:var(--muted)">
+          <li>Campus-only lost & found</li>
+          <li>Image uploads supported</li>
+          <li>Like / Reply / Delete (soft)</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- About / Benefits / Contact -->
+<section id="about" style="padding:40px 0;background:linear-gradient(180deg,#fff,#f9f6ff)">
+  <div class="container">
+    <h2>About CampusBazar</h2>
+    <p style="color:var(--muted)">CampusBazar is a simple lost & found platform for college campuses — quick reporting, public chat, and image attachments. Designed to be poppy & interactive.</p>
+  </div>
+</section>
+
+<section id="benefits" style="padding:24px 0;">
+  <div class="container">
+    <h3>Benefits</h3>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+      <div class="card glow" style="flex:1;min-width:220px"><strong>Local</strong><div style="color:var(--muted)">Only campus users</div></div>
+      <div class="card glow" style="flex:1;min-width:220px"><strong>Fast</strong><div style="color:var(--muted)">Announces in chat immediately</div></div>
+      <div class="card glow" style="flex:1;min-width:220px"><strong>Image support</strong><div style="color:var(--muted)">Attach photos</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT PAGE - bigger, with icon and emails -->
+<section id="contact" style="padding:28px 0;background:#f3eefb">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <div style="font-size:26px;font-weight:900">📞</div>
+      <div style="font-size:22px;font-weight:900">CONTACT PAGE</div>
+    </div>
+
+    <div class="contact-hero">
+      <div class="contact-card" style="flex:1">
+        <h4 style="margin:0 0 8px 0">Chhaya Halpati</h4>
+        <p style="color:var(--muted);margin:0">BCA</p>
+        <p style="margin:8px 0"><strong>Phone:</strong> 6354136708</p>
+        <p style="margin:8px 0"><strong>Email:</strong> <a href="mailto:chhayahalpati213@gmail.com">chhayahalpati213@gmail.com</a></p>
+      </div>
+
+      <div class="contact-card" style="flex:1">
+        <h4 style="margin:0 0 8px 0">Rajvi Dodiya</h4>
+        <p style="color:var(--muted);margin:0">BSc.IT</p>
+        <p style="margin:8px 0"><strong>Phone:</strong> 6354858463</p>
+        <p style="margin:8px 0"><strong>Email:</strong> <a href="mailto:rajvidodiya123@gmail.com">rajvidodiya123@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div style="font-weight:800">CampusBazar</div>
+    <div style="margin-top:6px;color:var(--muted)">© <span id="yr"></span> CampusBazar — All rights reserved</div>
+  </div>
+</footer>
+
+<!-- Chat FAB & panel -->
+<button id="chatFab" class="chat-fab" title="Open chat" aria-label="Open chat">
+  <div style="position:relative;font-size:20px">💬<span id="fabBadge" class="chat-badge hidden">0</span></div>
+</button>
+
+<div id="chatPanel" class="chat-panel hidden" role="dialog" aria-label="Public chat panel">
+  <div class="head">
+    <div style="display:flex;gap:10px;align-items:center"><strong>Public Chat</strong><div style="font-size:13px;color:var(--muted)">Be kind — public only</div></div>
+    <div>
+      <button id="closeChatBtn" class="btn ghost ripple">Close</button>
+    </div>
+  </div>
+
+  <div id="chatInner" class="chat-body"></div>
+
+  <div style="padding:10px;border-top:1px solid rgba(0,0,0,0.06)">
+    <div id="replyPreviewContainer" class="hidden"></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <input id="chatTextInput" type="text" placeholder="Type a message" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)">
+      <input id="chatFileInput" type="file" accept="image/*" style="display:none">
+      <button id="attachBtn" class="btn ghost ripple" title="Attach image" aria-label="Attach image">📷</button>
+      <button id="sendPanelBtn" class="btn ripple">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Init ---------- */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- Storage + state ---------- */
+const LS_USERS='cb_users_v3', LS_REPORTS='cb_reports_v4', LS_CHAT='cb_chat_v3';
+let currentUser = null;
+let replyTo = null;
+
+/* ---------- Helpers ---------- */
+function uid(){return 'id_'+Math.random().toString(36).slice(2,9)}
+function now(){return Date.now()}
+function loadUsers(){return JSON.parse(localStorage.getItem(LS_USERS)||'[]')}
+function saveUsers(u){localStorage.setItem(LS_USERS, JSON.stringify(u))}
+function loadReports(){return JSON.parse(localStorage.getItem(LS_REPORTS)||'[]')}
+function saveReports(r){localStorage.setItem(LS_REPORTS, JSON.stringify(r))}
+function loadChat(){return JSON.parse(localStorage.getItem(LS_CHAT)||'[]')}
+function saveChat(c){localStorage.setItem(LS_CHAT, JSON.stringify(c))}
+
+/* seed test user & storage */
+(function seed(){
+  const u = loadUsers();
+  if(!u.find(x=>x.email==='test@gmail.com')){ u.push({name:'Test User',email:'test@gmail.com',password:'123@ccc'}); saveUsers(u); }
+  if(!localStorage.getItem(LS_CHAT)) saveChat([]);
+  if(!localStorage.getItem(LS_REPORTS)) saveReports([]);
+})();
+
+/* ---------- UI refs ---------- */
+const loginCard = document.getElementById('loginCard');
+const registerCard = document.getElementById('registerCard');
+const userPortal = document.getElementById('userPortal');
+const chatFab = document.getElementById('chatFab');
+const chatPanel = document.getElementById('chatPanel');
+const chatInner = document.getElementById('chatInner');
+const fabBadge = document.getElementById('fabBadge');
+const attachBtn = document.getElementById('attachBtn');
+const chatFileInput = document.getElementById('chatFileInput');
+
+/* ---------- Nav helpers ---------- */
+function goTo(hash){ 
+  try {
+    location.hash = hash; 
+    const el = document.querySelector(hash);
+    if(el) window.scrollTo({top: el.offsetTop - 70, behavior:'smooth'});
+  } catch(e){}
+}
+function showLogin(){ loginCard.classList.remove('hidden'); registerCard.classList.add('hidden'); userPortal.classList.add('hidden'); }
+function showRegister(){ registerCard.classList.remove('hidden'); loginCard.classList.add('hidden'); userPortal.classList.add('hidden'); }
+function showPortal(){ userPortal.classList.remove('hidden'); loginCard.classList.add('hidden'); registerCard.classList.add('hidden'); }
+
+/* small scroll helper used by hero button */
+function scrollToLogin(){ showLogin(); goTo('#home'); }
+
+/* hook nav login/register text */
+document.getElementById('navLogin').addEventListener('click', ()=>{ showLogin(); goTo('#home'); });
+document.getElementById('navRegister').addEventListener('click', ()=>{ showRegister(); goTo('#home'); });
+
+/* ---------- Register / Login ---------- */
+document.getElementById('gotoRegister').addEventListener('click', showRegister);
+document.getElementById('backToLogin').addEventListener('click', showLogin);
+
+document.getElementById('regBtn').addEventListener('click', ()=>{
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('regPass').value;
+  if(!name||!email||!pass){ alert('सभी फ़ील्ड भरें'); return; }
+  const users = loadUsers();
+  if(users.find(u=>u.email===email)){ alert('Email exists — try login'); showLogin(); return; }
+  users.push({name,email,password:pass}); saveUsers(users);
+  currentUser = {name,email};
+  afterLogin();
+  addSystemChat(`${name} joined CampusBazar (registered)`);
+  notify('Account created — logged in');
+});
+
+document.getElementById('loginBtn').addEventListener('click', ()=>{
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('loginPass').value;
+  if(!email||!pass){ alert('Fill email/password'); return; }
+  const users = loadUsers();
+  const found = users.find(u=>u.email===email && u.password===pass);
+  if(!found){ alert('Invalid email/password'); return; }
+  currentUser = found;
+  afterLogin();
+  notify('Welcome back, '+currentUser.name);
+});
+
+function afterLogin(){
+  document.getElementById('signedName').textContent = currentUser.name;
+  document.getElementById('signedEmail').textContent = currentUser.email;
+  document.getElementById('uName').value = currentUser.name;
+  document.getElementById('uContact').value = currentUser.email;
+  showPortal(); renderReports(); renderChat(); updateFabBadge();
+}
+
+/* logout */
+document.getElementById('logoutBtn').addEventListener('click', ()=>{
+  currentUser = null;
+  showLogin();
+  notify('Logged out');
+  renderChat();
+  updateFabBadge();
+});
+
+/* ---------- Reports (submit -> announce in chat) ---------- */
+const itemImageInput = document.getElementById('itemImage');
+if(itemImageInput){
+  itemImageInput.addEventListener('change', function(e){
+    const f = e.target.files[0];
+    if(!f){ document.getElementById('imagePreviewArea').innerHTML=''; return; }
+    const r = new FileReader();
+    r.onload = ()=> document.getElementById('imagePreviewArea').innerHTML = `<img src="${r.result}" class="preview-img" alt="preview">`;
+    r.readAsDataURL(f);
+  });
+}
+
+document.getElementById('submitReportBtn').addEventListener('click', submitLostReport);
+document.getElementById('clearReportBtn').addEventListener('click', clearReportForm);
+
+function submitLostReport(){
+  if(!currentUser){ alert('Please login first'); return; }
+  const name = document.getElementById('uName').value.trim();
+  const contact = document.getElementById('uContact').value.trim();
+  const item = document.getElementById('uItem').value.trim();
+  const loc = document.getElementById('uLocation').value.trim();
+  const date = document.getElementById('uDate').value || new Date().toISOString().slice(0,10);
+  const f = document.getElementById('itemImage').files[0];
+  if(!item||!loc){ alert('Add item and location'); return; }
+  if(f){
+    const fr = new FileReader();
+    fr.onload = ()=> storeReportAndAnnounce(name,contact,item,loc,date,fr.result);
+    fr.readAsDataURL(f);
+  } else {
+    storeReportAndAnnounce(name,contact,item,loc,date,null);
+  }
+}
+
+function storeReportAndAnnounce(name,contact,item,loc,date,imgData){
+  const report = { id: uid(), name, contact, item, loc, date, img: imgData, status: 'Pending', ts: now() };
+  const reports = loadReports();
+  reports.unshift(report);
+  saveReports(reports);
+  renderReports();
+  clearReportForm();
+  addSystemChat(`${name} reported lost item: ${item} at ${loc}`, {img: imgData, reportId: report.id});
+  notify(`Report submitted: ${item}`);
+}
+
+function clearReportForm(){
+  document.getElementById('uItem').value=''; document.getElementById('uLocation').value=''; document.getElementById('uDate').value=''; document.getElementById('imagePreviewArea').innerHTML='';
+  if(document.getElementById('itemImage')) document.getElementById('itemImage').value='';
+}
+
+/* ---------- Reports rendering + Found/NotFound handlers ---------- */
+function renderReports(){
+  const tbody = document.getElementById('reportsList');
+  if(!tbody) return;
+  if(!currentUser){ tbody.innerHTML = '<tr><td colspan="6" class="hint">Login to see reports</td></tr>'; return; }
+  const all = loadReports();
+  // show only current user's reports in this "My Reports" view
+  const filtered = all.filter(r=>r.contact===currentUser.email);
+  const q = (document.getElementById('reportSearch') && document.getElementById('reportSearch').value || '').toLowerCase().trim();
+  const statusFilter = document.getElementById('reportFilter') ? document.getElementById('reportFilter').value : 'all';
+  let list = filtered.filter(r=>{
+    if(statusFilter!=='all' && r.status!==statusFilter) return false;
+    if(q && !(r.item.toLowerCase().includes(q) || r.loc.toLowerCase().includes(q) || r.name.toLowerCase().includes(q))) return false;
+    return true;
+  });
+  if(!list.length){ tbody.innerHTML = '<tr><td colspan="6" class="hint">No reports</td></tr>'; return; }
+
+  tbody.innerHTML = list.map(r=>{
+    const statusBadge = r.status === 'Found' ? `<span class="status-badge status-found">FOUND</span>` : `<span class="status-badge status-pending">PENDING</span>`;
+    const imgNote = r.img ? '<br><small>📷 attached</small>' : '';
+    return `<tr>
+      <td style="padding:8px">${escapeHTML(r.name)}<br><small style="color:var(--muted)">${escapeHTML(r.contact)}</small></td>
+      <td style="padding:8px">${escapeHTML(r.item)}${imgNote}</td>
+      <td style="padding:8px">${escapeHTML(r.loc)}</td>
+      <td style="padding:8px">${r.date}</td>
+      <td style="padding:8px">${statusBadge}</td>
+      <td style="padding:8px">
+        <div class="report-controls">
+          <button class="report-btn yes" onclick="markReportFound('${r.id}')">YES</button>
+          <button class="report-btn no" onclick="markReportNotFound('${r.id}')">NO</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function markReportFound(reportId){
+  const reports = loadReports();
+  const idx = reports.findIndex(r=>r.id===reportId);
+  if(idx===-1) return;
+  reports[idx].status = 'Found';
+  saveReports(reports);
+  notify('Status updated: Found ✅');
+  renderReports();
+  addSystemChat(`Update: ${reports[idx].name} marked item "${reports[idx].item}" as FOUND.`);
+}
+
+function markReportNotFound(reportId){
+  const reports = loadReports();
+  const idx = reports.findIndex(r=>r.id===reportId);
+  if(idx===-1) return;
+  reports[idx].status = 'Pending';
+  saveReports(reports);
+  notify('Status updated: Pending');
+  renderReports();
+}
+
+/* ---------- Chat (FAB + panel + aside share storage) ---------- */
+/* message schema: {id,name,text,img,ts,by,replyTo,likes,deleted,seen,system,liked_by} */
+
+function addSystemChat(text, extra){
+  const chat = loadChat();
+  chat.push({ id: uid(), name: 'System', text, ts: now(), img: extra && extra.img ? extra.img : null, by: null, replyTo: null, likes:0, deleted:false, seen:false, system:true, liked_by:[] });
+  saveChat(chat);
+  renderChat();
+  updateFabBadge();
+}
+
+/* aside send (small chat in right card) */
+document.getElementById('sendChatBtn').addEventListener('click', ()=>{
+  const name = (document.getElementById('chatName').value || 'Anon').trim();
+  const msg = document.getElementById('chatInput').value.trim();
+  if(!msg) return;
+  const chat = loadChat();
+  chat.push({ id: uid(), name, text: msg, ts: now(), img: null, by: currentUser ? currentUser.email : null, replyTo:null, likes:0, deleted:false, seen:false, system:false, liked_by:[] });
+  saveChat(chat);
+  document.getElementById('chatInput').value='';
+  renderChat();
+  updateFabBadge();
+  notify('Message posted');
+});
+
+/* Panel send (with image support and reply) */
+document.getElementById('sendPanelBtn').addEventListener('click', ()=>{
+  const text = document.getElementById('chatTextInput').value.trim();
+  const file = chatFileInput.files[0];
+  const name = currentUser ? currentUser.name : (document.getElementById('chatName').value.trim() || 'Anon');
+  if(!text && !file){ alert('Write a message or attach an image'); return; }
+  if(file){
+    const fr = new FileReader();
+    fr.onload = ()=> storeChatMessage(name,text,fr.result);
+    fr.readAsDataURL(file);
+  } else {
+    storeChatMessage(name,text,null);
+  }
+});
+function storeChatMessage(name,text,imgData){
+  const msg = { id: uid(), name, text, ts: now(), img: imgData, by: currentUser ? currentUser.email : null, replyTo: replyTo, likes:0, deleted:false, seen:false, system:false, liked_by:[] };
+  const chat = loadChat(); chat.push(msg); saveChat(chat);
+  document.getElementById('chatTextInput').value=''; if(chatFileInput) chatFileInput.value='';
+  clearReplyPreview(); renderChat(); updateFabBadge(); notify('Message sent');
+}
+
+/* render messages (used for both aside and panel) */
+function renderMessageHTML(m){
+  if(m.deleted) return `<div class="chat-msg" style="opacity:.6"><em>This message was deleted</em></div>`;
+  const time = new Date(m.ts).toLocaleString();
+  const isMe = currentUser && m.by && currentUser.email===m.by;
+  const meClass = isMe ? 'me' : '';
+  let quoteHTML='';
+  if(m.replyTo){
+    const ref = findMessageById(m.replyTo);
+    if(ref) quoteHTML = `<div style="margin-bottom:6px" class="reply-preview"><small style="color:var(--muted)">${escapeHTML(ref.name)}:</small> ${escapeHTML(ref.text||'[image]')}</div>`;
+  }
+  const imgHTML = m.img ? `<img src="${m.img}" class="msg-img" alt="attached" onclick="openImageLightbox('${m.img.replace(/'/g,"\\'")}')">` : '';
+  const sysBadge = m.system ? '<small style="color:var(--muted)"> · system</small>' : '';
+  const liked = Array.isArray(m.liked_by) && currentUser && m.liked_by.includes(currentUser.email);
+  const heartStyle = liked ? 'color:#e0245e;font-weight:900' : 'color:inherit';
+  return `<div class="chat-msg ${meClass}" style="position:relative;">
+    ${quoteHTML}
+    <div><strong>${escapeHTML(m.name)}</strong>${sysBadge}<div class="msg-meta">${time}</div></div>
+    <div style="margin-top:6px">${escapeHTML(m.text||'')}</div>
+    ${imgHTML}
+    <div class="chat-actions">
+      <button class="icon-btn" onclick="onLike('${m.id}')"><span style="${heartStyle}">❤</span> <span class="like-count">${m.likes||0}</span></button>
+      <button class="icon-btn" onclick="onReply('${m.id}')" title="Reply">➤</button>
+      <button class="icon-btn" onclick="onDelete('${m.id}')" title="Delete">🗑️</button>
+    </div>
+  </div>`;
+}
+
+function findMessageById(id){ const chat=loadChat(); return chat.find(m=>m.id===id); }
+
+/* render chat areas */
+function renderChat(){
+  const aside = document.getElementById('chatBody');
+  const panel = document.getElementById('chatInner');
+  let chat = loadChat()||[];
+  chat = chat.slice().sort((a,b)=>a.ts - b.ts);
+  const html = chat.map(m=>renderMessageHTML(m)).join('');
+  if(aside) aside.innerHTML = html;
+  if(panel) panel.innerHTML = html;
+  setTimeout(()=>{ if(aside) aside.scrollTop = aside.scrollHeight; if(panel) panel.scrollTop = panel.scrollHeight; updateFabBadge(); },60);
+}
+
+/* like / reply / delete handlers */
+function onLike(id){
+  const c = loadChat(); const m = c.find(x=>x.id===id); if(!m) return;
+  // toggle like per current user (if logged in)
+  if(!currentUser){
+    alert('Login to like messages');
+    return;
+  }
+  m.liked_by = m.liked_by || [];
+  if(m.liked_by.includes(currentUser.email)){
+    m.liked_by = m.liked_by.filter(e=>e!==currentUser.email);
+  } else {
+    m.liked_by.push(currentUser.email);
+  }
+  m.likes = m.liked_by.length;
+  saveChat(c); renderChat();
+}
+function onReply(id){ const m = findMessageById(id); if(!m) return; replyTo = id; const container = document.getElementById('replyPreviewContainer'); container.classList.remove('hidden'); container.innerHTML = `<div style="padding:8px;border-radius:8px;background:rgba(127,95,194,0.06)">Replying to <strong>${escapeHTML(m.name)}</strong>: ${escapeHTML(m.text||'[image]')} <button class="btn ghost" onclick="clearReplyPreview()">x</button></div>`; document.getElementById('chatTextInput').focus(); }
+function clearReplyPreview(){ replyTo=null; const container=document.getElementById('replyPreviewContainer'); container.classList.add('hidden'); container.innerHTML=''; }
+
+function onDelete(id){
+  if(!confirm('Delete this message? (soft delete)')) return;
+  const c = loadChat(); const m = c.find(x=>x.id===id); if(!m) return;
+  m.deleted = true; m.text=''; saveChat(c); renderChat(); notify('Message deleted (soft)');
+}
+
+/* lightbox image */
+function openImageLightbox(src){
+  const modal = document.createElement('div'); modal.style.position='fixed'; modal.style.inset=0; modal.style.zIndex=9999; modal.style.display='grid'; modal.style.placeItems='center'; modal.style.background='rgba(0,0,0,0.7)';
+  modal.innerHTML = `<div style="max-width:92%;max-height:92%;padding:18px;border-radius:12px;background:transparent"><div style="text-align:right"><button class="btn ghost" id="lbClose">Close</button></div><img src="${src}" style="max-width:100%;border-radius:10px;margin-top:6px"/></div>`;
+  document.body.appendChild(modal);
+  document.getElementById('lbClose').onclick = ()=> modal.remove();
+}
+
+/* ---------- FAB / panel toggle + badge ---------- */
+chatFab.addEventListener('click', ()=> toggleChat(true));
+document.getElementById('closeChatBtn').addEventListener('click', ()=> toggleChat(false));
+
+function toggleChat(forceOpen){
+  const isHidden = chatPanel.classList.contains('hidden');
+  if(forceOpen ? isHidden : !isHidden){
+    chatPanel.classList.remove('hidden'); chatFab.classList.remove('pulse'); markAllSeen();
+  } else {
+    chatPanel.classList.add('hidden'); chatFab.classList.add('pulse');
+  }
+  renderChat();
+}
+
+function updateFabBadge(){
+  const badge = fabBadge;
+  const chat = loadChat()||[];
+  const unseen = chat.filter(m=>!m.seen && !m.system && !m.deleted).length;
+  if(unseen>0){ badge.textContent = unseen; badge.classList.remove('hidden'); } else { badge.classList.add('hidden'); }
+}
+
+function markAllSeen(){ const chat = loadChat()||[]; chat.forEach(m=>m.seen=true); saveChat(chat); updateFabBadge(); }
+
+/* ---------- system helpers ---------- */
+function storeChatMessageFromReport(name,text,imgData){ const msg = { id: uid(), name, text, ts: now(), img: imgData, by: currentUser ? currentUser.email : null, replyTo:null, likes:0, deleted:false, seen:false, system:false, liked_by:[] }; const chat = loadChat(); chat.push(msg); saveChat(chat); renderChat(); updateFabBadge(); }
+
+/* small notify popup */
+function notify(text){
+  const el = document.createElement('div'); el.className='notify-pop'; el.style.zIndex=9999; el.style.position='fixed'; el.style.right='18px'; el.style.bottom='90px';
+  el.innerHTML = `<div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--purple-2),var(--accent));box-shadow:var(--glow);color:#fff;font-weight:700">${escapeHTML(text)}</div>`;
+  document.body.appendChild(el);
+  setTimeout(()=>{ el.style.opacity=1; el.style.transform='translateY(0)'; },10);
+  setTimeout(()=>{ el.style.transition='all .45s'; el.style.opacity=0; el.style.transform='translateY(12px)'; },2600);
+  setTimeout(()=> el.remove(),3200);
+}
+
+/* ---------- small util + init ---------- */
+function escapeHTML(s){ if(s==null) return ''; return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
+
+/* seed helper: add a welcome system message once */
+(function seedSystemMsg(){
+  const chat = loadChat();
+  if(chat.length===0){
+    chat.push({ id: uid(), name:'System', text:'Welcome to CampusBazar — register to post reports!', ts: now(), img:null, by:null, replyTo:null, likes:0, deleted:false, seen:false, system:true, liked_by:[] });
+    saveChat(chat);
+  }
+})();
+
+/* initial render */
+renderReports(); renderChat(); updateFabBadge();
+
+/* keyboard shortcuts */
+document.getElementById('chatTextInput').addEventListener('keydown',(e)=>{ if(e.key==='Enter') document.getElementById('sendPanelBtn').click(); });
+document.getElementById('chatInput').addEventListener('keydown',(e)=>{ if(e.key==='Enter') document.getElementById('sendChatBtn').click(); });
+
+/* attach button opens file picker */
+attachBtn.addEventListener('click', ()=> chatFileInput.click());
+chatFileInput.addEventListener('change', ()=> {
+  // optional: preview image selected for panel
+  const f = chatFileInput.files[0];
+  if(!f) return;
+  const fr = new FileReader();
+  fr.onload = ()=> {
+    // put preview into reply container as a small attached preview (non-persistent)
+    const container = document.getElementById('replyPreviewContainer'); container.classList.remove('hidden');
+    container.innerHTML = `<div style="padding:8px;border-radius:8px;background:rgba(127,95,194,0.04)"><small>Image attached preview</small><div style="margin-top:8px"><img src="${fr.result}" style="max-width:100%;border-radius:8px"></div><div style="margin-top:8px"><button class="btn ghost" onclick="clearPanelAttachment()">Remove</button></div></div>`;
+  };
+  fr.readAsDataURL(f);
+});
+function clearPanelAttachment(){ chatFileInput.value=''; clearReplyPreview(); }
+
+/* small interactions: press shadow */
+document.querySelectorAll('.btn').forEach(btn=>{
+  btn.addEventListener('pointerdown', ()=> btn.classList.add('btn-press'));
+  btn.addEventListener('pointerup', ()=> btn.classList.remove('btn-press'));
+  btn.addEventListener('pointerleave', ()=> btn.classList.remove('btn-press'));
+  btn.addEventListener('keydown', ()=> btn.classList.add('btn-press'));
+  btn.addEventListener('keyup', ()=> btn.classList.remove('btn-press'));
+});
+
+/* small interactions */
+document.querySelectorAll('.site-nav .menu a').forEach(it=>it.addEventListener('click', ()=>{ it.style.animation='bounceTiny .36s ease'; setTimeout(()=>it.style.animation='',360); }));
+
+/* expose for debug (optional) */
+window._cb = { loadUsers, saveUsers, loadReports, saveReports, loadChat, saveChat };
+</script>
+</body>
+</html>
